@@ -24,6 +24,13 @@ class DepartmentEditLivewire extends Component
         $this->department = new Department;
     }
 
+    public function hydrate()
+    {
+        if ( Auth::guest() || Auth::user()->cannot('viewAny', [Department::class]) ) {
+            return $this->emitUp('refresh');
+        }
+    }
+
     public function unset_department()
     {
         if ( Auth::guest() || Auth::user()->cannot('create', [Department::class]) ) 

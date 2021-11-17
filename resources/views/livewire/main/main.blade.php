@@ -20,6 +20,10 @@
                 <i class="fas fa-building"></i>
                 Departments
             </a> 
+            <a class="list-group-item list-group-item-action bg-side-bar bg-side-item-bar text-white border-white tabs" href="{{ route('position') }}">
+                <i class="fas fa-address-card"></i>
+                Positions
+            </a> 
         </div>
     </div>
     <!-- /#sidebar-wrapper -->
