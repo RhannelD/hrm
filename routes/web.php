@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\SignInLivewire;
+use App\Http\Livewire\Employee\EmployeeLivewire;
+use App\Http\Livewire\Department\DepartmentLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,19 @@ use App\Http\Livewire\Auth\SignInLivewire;
 
 Route::get('/', function () { return redirect()->route('login.index'); })->name('index');
 
-Route::get('/login', SignInLivewire::class)->name('login.index');
 
-Route::get('/signedup', function () { 
-    return ''; 
-})->name('signedup');
+// Needs to be signed out to access
+Route::group(['middleware' => ['guest']], function(){
+    Route::get('/login', SignInLivewire::class)->name('login.index');
+});
+
+// Needs to be signed in to access
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/employee', EmployeeLivewire::class)->name('employee');
+
+    Route::get('/department', DepartmentLivewire::class)->name('department');
+});
+
+Route::get('/logout', function () { 
+    return Auth::logout(); 
+})->name('logout');

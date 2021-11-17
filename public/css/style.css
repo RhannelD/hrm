@@ -1,3 +1,55 @@
+/*Responsive Menu*/
+#wrapper {
+    overflow-x: hidden;
+ }
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    margin-left: -14rem;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+    width: 14rem;
+}
+
+#page-content-wrapper {
+    min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: 0;
+}
+
+.ui-datepicker-calendar {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -14rem;
+    }
+}
+
+/*------------------------------------------------------*/
+
 html, body {
     height: 100%;
 }
@@ -15,4 +67,20 @@ html, body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.bg-top-bar{
+    background-color: #333333;
+}
+
+.bg-side-bar{
+    background-color: #222222;
+}
+
+.bg-side-item-bar:hover{
+    background-color: #444444;
+}
+
+.bg-mid-bar{
+    background-color: #444444;
 }

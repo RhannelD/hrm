@@ -27,7 +27,7 @@
     @yield('styles')
 </head>
 <body>
-    @yield('content')
+    @yield('main')
 </body>
     @livewireScripts
     @yield('scripts')

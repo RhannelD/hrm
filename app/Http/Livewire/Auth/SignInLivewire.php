@@ -25,7 +25,8 @@ class SignInLivewire extends Component
     public function render()
     {
         return view('livewire.auth.sign-in-livewire')
-            ->extends('layouts.app');
+            ->extends('layouts.app')
+            ->slot('main');
     }
 
     public function updated($propertyName)
@@ -38,7 +39,7 @@ class SignInLivewire extends Component
         $this->validate();
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            return redirect()->route('signedup');
+            return redirect()->route('employee');
         }
 
         $this->dispatchBrowserEvent('swal:modal', [
