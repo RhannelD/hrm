@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Auth\SignInLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return redirect()->route('login.index'); })->name('index');
 
-Auth::routes();
+Route::get('/login', SignInLivewire::class)->name('login.index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/signedup', function () { 
+    return ''; 
+})->name('signedup');

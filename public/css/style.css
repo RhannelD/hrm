@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+}
+
+.login-bg {
+    background-color: cadetblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(1px);
+}
+
+.login-panel {
+    background-image:  url("/img/hrm-bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
