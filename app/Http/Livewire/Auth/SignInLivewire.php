@@ -12,14 +12,14 @@ class SignInLivewire extends Component
 
     protected $rules = [
         'email' => 'required|email',
-        'password' => 'required|min:9',
+        'password' => 'required|min:6',
     ];
 
     protected $messages = [
         'email.required' => 'Email address cannot be empty.',
         'email.email' => 'Email address format is not valid.',
         'password.required' => 'Password cannot be empty.',
-        'password.min' => 'Password must be at least 9 characters.',
+        'password.min' => 'Password must be at least 6 characters.',
     ];
 
     public function render()
@@ -41,6 +41,7 @@ class SignInLivewire extends Component
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             return redirect()->route('employee');
         }
+        $this->password = '';
 
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'error',  

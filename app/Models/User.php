@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -45,8 +46,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+    public function employee_position()
+    {
+        return $this->hasOne(EmployeePosition::class, 'user_id', 'id');
+    }
+
+
     public function is_admin()
     {
         return $this->usertype == 'adm';
+    }
+
+    public function flname()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    public function scopeWhereSearch($query, $search)
+    {
+        return $query->where(function ($query) use ($search) {
+            $query->where('email', 'like', "%$search%")
+                ->orWhere(DB::raw('CONCAT(firstname, " ", lastname)'), 'like', "%$search%");
+        });
+    }
+
+    public function scopeWhereEmployee($query)
+    {
+        return $query->where('usertype', 'emp');
     }
 }
