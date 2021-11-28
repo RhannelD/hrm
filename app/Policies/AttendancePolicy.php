@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Position;
+use App\Models\Attendance;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PositionPolicy
+class AttendancePolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class PositionPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Position  $position
+     * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Position $position)
+    public function view(User $user, Attendance $attendance)
     {
         //
     }
@@ -48,10 +48,10 @@ class PositionPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Position  $position
+     * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Position $position)
+    public function update(User $user, Attendance $attendance)
     {
         return $user->is_admin();
     }
@@ -60,10 +60,10 @@ class PositionPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Position  $position
+     * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Position $position)
+    public function delete(User $user, Attendance $attendance)
     {
         return $user->is_admin();
     }
@@ -72,10 +72,10 @@ class PositionPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Position  $position
+     * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Position $position)
+    public function restore(User $user, Attendance $attendance)
     {
         //
     }
@@ -84,10 +84,10 @@ class PositionPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Position  $position
+     * @param  \App\Models\Attendance  $attendance
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Position $position)
+    public function forceDelete(User $user, Attendance $attendance)
     {
         //
     }

@@ -1,7 +1,7 @@
 <div>
     <div wire:ignore.self class="modal fade" id="user-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="user-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
+            <form class="modal-content">
                 <div class="modal-header bg-dark text-white">
                     <h5 class="modal-title" id="user-modal-label">
                         Employee {{ isset($user_id)? 'Editing': 'Creating' }}
@@ -104,7 +104,7 @@
                         Save
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

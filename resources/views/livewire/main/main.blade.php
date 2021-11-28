@@ -24,6 +24,14 @@
                 <i class="fas fa-address-card"></i>
                 Positions
             </a> 
+            <a class="list-group-item list-group-item-action bg-side-bar bg-side-item-bar text-white border-white tabs" href="{{ route('attendance') }}">
+                <i class="fas fa-calendar-check"></i>
+                Attendances
+            </a> 
+            <a class="list-group-item list-group-item-action bg-side-bar bg-side-item-bar text-white border-white tabs" href="{{ route('leave') }}">
+                <i class="fas fa-calendar-times"></i>
+                Leaves
+            </a> 
         </div>
     </div>
     <!-- /#sidebar-wrapper -->

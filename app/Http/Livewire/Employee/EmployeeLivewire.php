@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Employee;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\EmployeePosition;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -21,6 +22,18 @@ class EmployeeLivewire extends Component
         'refresh'   => '$refresh',
         'employee' => 'employee',
     ];
+
+    public function mount()
+    {
+        $this->authorize('viewAny', [EmployeePosition::class]);
+    }
+
+    public function hydrate()
+    {
+        if ( Auth::guest() || Auth::user()->cannot('viewAny', [EmployeePosition::class]) ) {
+            return redirect()->route('employee');
+        }
+    }
 
     public function render()
     {

@@ -45,6 +45,13 @@ class EmployeeEditLivewire extends Component
         $this->employee = new EmployeePosition;
     }
 
+    public function hydrate()
+    {
+        if ( Auth::guest() || Auth::user()->cannot('viewAny', [EmployeePosition::class]) ) {
+            return $this->emitUp('refresh');
+        }
+    }
+
     public function unset_user()
     {
         if ( Auth::guest() || Auth::user()->cannot('create', [User::class]) ) 
