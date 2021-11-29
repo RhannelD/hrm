@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\SignInLivewire;
 use App\Http\Livewire\Leave\LeaveLivewire;
 use App\Http\Livewire\Leave\LeaveShowLivewire;
+use App\Http\Livewire\Payroll\PayrollLivewire;
 use App\Http\Livewire\Profile\ProfileLivewire;
 use App\Http\Livewire\Employee\EmployeeLivewire;
 use App\Http\Livewire\Position\PositionLivewire;
@@ -49,6 +50,8 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/{employee_id}/performance', EmployeePerformanceLivewire::class)->name('employee.performance');
 	});
+
+    Route::get('/payroll/{employee_id?}', PayrollLivewire::class)->name('payroll');
 
     Route::get('/department', DepartmentLivewire::class)->name('department');
     Route::get('/department/{department_id}', DepartmentShowLivewire::class)->name('department.show');

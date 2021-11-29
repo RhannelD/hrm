@@ -65,7 +65,7 @@ class PayrollPolicy
      */
     public function delete(User $user, Payroll $payroll)
     {
-        //
+        return $user->is_admin();
     }
 
     /**

@@ -16,6 +16,10 @@
                 <i class="fas fa-user-tie"></i>
                 Employees
             </a> 
+            <a class="list-group-item list-group-item-action bg-side-bar bg-side-item-bar text-white border-white tabs" href="{{ route('payroll') }}">
+                <i class="fas fa-file-invoice-dollar"></i>
+                Payrolls
+            </a> 
             <a class="list-group-item list-group-item-action bg-side-bar bg-side-item-bar text-white border-white tabs" href="{{ route('department') }}">
                 <i class="fas fa-building"></i>
                 Departments
