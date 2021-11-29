@@ -9,9 +9,12 @@ use App\Http\Livewire\Employee\EmployeeLivewire;
 use App\Http\Livewire\Position\PositionLivewire;
 use App\Http\Livewire\Attendance\AttendanceLivewire;
 use App\Http\Livewire\Department\DepartmentLivewire;
+use App\Http\Livewire\Employee\EmployeeShowLivewire;
 use App\Http\Livewire\Position\PositionShowLivewire;
 use App\Http\Livewire\Attendance\AttendanceShowLivewire;
 use App\Http\Livewire\Department\DepartmentShowLivewire;
+use App\Http\Livewire\Employee\Attendance\EmployeeAttendanceLivewire;
+use App\Http\Livewire\Employee\Attendance\EmployeeAttendanceShowLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +37,15 @@ Route::group(['middleware' => ['guest']], function(){
 
 // Needs to be signed in to access
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('/employee', EmployeeLivewire::class)->name('employee');
+    Route::prefix('/employee')->group(function () {
+        Route::get('/', EmployeeLivewire::class)->name('employee');
+
+        Route::get('/{employee_id}', EmployeeShowLivewire::class)->name('employee.show');
+
+        Route::get('/{employee_id}/attendance', EmployeeAttendanceLivewire::class)->name('employee.attendance');
+
+        Route::get('/attendance/{attendance_id}', EmployeeAttendanceShowLivewire::class)->name('employee.attendance.show');
+	});
 
     Route::get('/department', DepartmentLivewire::class)->name('department');
     Route::get('/department/{department_id}', DepartmentShowLivewire::class)->name('department.show');
