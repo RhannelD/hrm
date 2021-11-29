@@ -20,6 +20,11 @@ class Attendance extends Model
         'payment',
     ];
 
+    public function employee_attendances()
+    {
+        return $this->hasMany(EmployeeAttendance::class, 'attendance_id', 'id');
+    }
+
     
     public function scopeWhereAttendance($query)
     {

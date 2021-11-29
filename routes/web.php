@@ -14,6 +14,7 @@ use App\Http\Livewire\Position\PositionShowLivewire;
 use App\Http\Livewire\Attendance\AttendanceShowLivewire;
 use App\Http\Livewire\Department\DepartmentShowLivewire;
 use App\Http\Livewire\Employee\Attendance\EmployeeAttendanceLivewire;
+use App\Http\Livewire\Employee\Performance\EmployeePerformanceLivewire;
 use App\Http\Livewire\Employee\Attendance\EmployeeAttendanceShowLivewire;
 
 /*
@@ -43,8 +44,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/{employee_id}', EmployeeShowLivewire::class)->name('employee.show');
 
         Route::get('/{employee_id}/attendance', EmployeeAttendanceLivewire::class)->name('employee.attendance');
-
+        
         Route::get('/attendance/{attendance_id}', EmployeeAttendanceShowLivewire::class)->name('employee.attendance.show');
+
+        Route::get('/{employee_id}/performance', EmployeePerformanceLivewire::class)->name('employee.performance');
 	});
 
     Route::get('/department', DepartmentLivewire::class)->name('department');

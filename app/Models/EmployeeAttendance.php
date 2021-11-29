@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EmployeeAttendance extends Model
 {
@@ -30,5 +31,13 @@ class EmployeeAttendance extends Model
     public function attendance()
     {
         return $this->belongsTo(Attendance::class, 'attendance_id', 'id');
+    }
+
+    public function get_number_of_days()
+    {
+        $date_start_at = Carbon::parse($this->start_at);
+        $date_end_at   = Carbon::parse($this->end_at);
+
+        return $date_start_at->diffInDays($date_end_at)+1;
     }
 }

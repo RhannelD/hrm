@@ -47,6 +47,9 @@
                     <tr>
                         <td colspan="2" class="py-0">
                             <div class="d-flex justify-content-end py-1">
+                                <a href="{{ route('employee.performance', $employee->id) }}" class="btn btn-lg text-white btn-info ml-1">
+                                    Performance
+                                </a>
                                 <a href="{{ route('employee.attendance', $employee->id) }}" class="btn btn-lg text-white btn-info ml-1">
                                     Attendance/Leave
                                 </a>
