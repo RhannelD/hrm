@@ -1,12 +1,14 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-mid-bar border-bottom-0 pb-1">
-		<div class="input-group col-md-4 mb-1 px-0">
-			<div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text border-0 bg-primary font-weight-bold text-white" id="employee-name">Employee</span>
+        <div class="input-group col-md-4 mb-1 px-0">
+            <a href="{{ route('employee.show', $employee_id) }}">
+			    <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text border-0 bg-primary font-weight-bold text-white" id="employee-name">Employee</span>
+                    </div>
+                    <input type="text" class="form-control border-0 bg-white" readonly aria-label="Username" aria-describedby="employee-name" value="{{ $employee->flname() }}">
                 </div>
-                <input type="text" class="form-control border-0 bg-white" readonly aria-label="Username" aria-describedby="employee-name" value="{{ $employee->flname() }}">
-            </div>
+            </a>
 		</div>
 
         <div class="col-md-8 mb-1 px-0 d-flex justify-content-end flex-wrap flex-md-nowrap">

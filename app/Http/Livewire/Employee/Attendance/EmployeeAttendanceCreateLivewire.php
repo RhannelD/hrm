@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Attendance;
 use App\Rules\SameMonthYearRule;
 use App\Models\EmployeeAttendance;
+use App\Rules\NotYetPayrolledDateRule;
 use App\Rules\UniqueAttendanceDateRule;
 
 class EmployeeAttendanceCreateLivewire extends Component
@@ -27,6 +28,7 @@ class EmployeeAttendanceCreateLivewire extends Component
                     'required',
                     'date_format:Y-m-d',
                     new UniqueAttendanceDateRule($this->employee_id),
+                    new NotYetPayrolledDateRule($this->employee_id),
                 ],
             'end_date' => [
                     'required',
@@ -34,6 +36,7 @@ class EmployeeAttendanceCreateLivewire extends Component
                     'after_or_equal:start_date',
                     new SameMonthYearRule($this->start_date),
                     new UniqueAttendanceDateRule($this->employee_id),
+                    new NotYetPayrolledDateRule($this->employee_id),
                 ],
         ];
     }

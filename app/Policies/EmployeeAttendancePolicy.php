@@ -2,8 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\EmployeeAttendance;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Payroll;
+use App\Models\EmployeeAttendance;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EmployeeAttendancePolicy
@@ -66,6 +68,23 @@ class EmployeeAttendancePolicy
     public function delete(User $user, EmployeeAttendance $employeeAttendance)
     {
         return $user->is_admin();
+    }
+
+    /**
+     * Determine whether the user can delete depending on payrolls.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\EmployeeAttendance  $employeeAttendance
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function delete_depending_on_payrolls(User $user, EmployeeAttendance $employeeAttendance)
+    {
+        $date = Carbon::parse($employeeAttendance->start_at);
+        
+        return !Payroll::where('user_id', $employeeAttendance->user_id)
+            ->whereYear('payroll_at', '=', $date->format('Y'))
+            ->whereMonth('payroll_at', '=', $date->format('m'))
+            ->exists();
     }
 
     /**

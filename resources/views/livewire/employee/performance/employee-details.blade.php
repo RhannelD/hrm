@@ -12,7 +12,9 @@
                         Name:
                     </td>
                     <td>
-                        {{ $employee->flname() }}
+                        <a href="{{ route('employee.show', $employee_id) }}">
+                            {{ $employee->flname() }}
+                        </a>
                     </td>
                 </tr>
                 <tr>

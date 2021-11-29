@@ -75,13 +75,14 @@ class EmployeeAttendanceLivewire extends Component
 
     public function delete_confirm($employee_attendance_id)
     {
-        if ( Auth::guest() || Auth::user()->cannot('delete', $this->get_employee_attendance($employee_attendance_id)) ) 
+        $employee_attendance = $this->get_employee_attendance($employee_attendance_id);
+        if ( $this->cant_delete($employee_attendance) ) 
             return;
         
         $this->dispatchBrowserEvent('swal:confirm:delete_employee_attendance', [
             'type' => 'warning',  
             'message' => 'Are you sure?', 
-            'text' => 'If deleted, you will not be able to recover this employee!',
+            'text' => 'If deleted, you will not be able to recover this record!',
             'employee_attendance_id' => $employee_attendance_id,
         ]);
     }
@@ -89,15 +90,33 @@ class EmployeeAttendanceLivewire extends Component
     public function delete_employee_attendance($delete_employee_attendance_id)
     {
         $employee_attendance = $this->get_employee_attendance($delete_employee_attendance_id);
-        if ( Auth::guest() || Auth::user()->cannot('delete', $employee_attendance) ) 
+        if ( $this->cant_delete($employee_attendance) ) 
             return;
 
         if ( $employee_attendance->delete() ) {
             $this->dispatchBrowserEvent('swal:modal', [
                 'type' => 'success',
-                'message' => 'Attendance Deleted', 
-                'text' => 'Employee Attendance has been successfully deleted'
+                'message' => 'Attendance/Leave Deleted', 
+                'text' => 'Employee Attendance/Leave has been successfully deleted'
             ]);
         }
+    }
+
+    public function cant_delete($employee_attendance)
+    {
+        return Auth::guest() || Auth::user()->cannot('delete', $employee_attendance) || $this->cant_delete_depending_on_payrolls($employee_attendance);
+    }
+
+    public function cant_delete_depending_on_payrolls($employee_attendance)
+    {
+        if ( Auth::user()->cannot('delete_depending_on_payrolls', $employee_attendance) ) {
+            $this->dispatchBrowserEvent('swal:modal', [
+                'type' => 'warning',
+                'message' => 'Attendance/Leave Cannot be Deleted', 
+                'text' => 'This attendance/leave date has already been payrolled'
+            ]);
+            return true;
+        }
+        return false;
     }
 }
