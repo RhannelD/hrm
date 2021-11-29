@@ -29,6 +29,10 @@
                             {{ $attendance->payment }}%
                         </td>
                         <td class="text-center text-nowrap py-1">
+                            <a href="{{ route('leave.show', $attendance->id) }}" class="btn btn-primary text-white">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+
                             @can( 'update', $attendance )
                                 <button onclick="set_attendance({{ $attendance->id }})" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#attendance-modal">
                                     <i class="fas fa-edit"></i>

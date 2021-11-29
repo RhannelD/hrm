@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\SignInLivewire;
 use App\Http\Livewire\Leave\LeaveLivewire;
+use App\Http\Livewire\Leave\LeaveShowLivewire;
 use App\Http\Livewire\Profile\ProfileLivewire;
 use App\Http\Livewire\Employee\EmployeeLivewire;
 use App\Http\Livewire\Position\PositionLivewire;
 use App\Http\Livewire\Attendance\AttendanceLivewire;
 use App\Http\Livewire\Department\DepartmentLivewire;
+use App\Http\Livewire\Position\PositionShowLivewire;
+use App\Http\Livewire\Attendance\AttendanceShowLivewire;
+use App\Http\Livewire\Department\DepartmentShowLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,16 +37,16 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/employee', EmployeeLivewire::class)->name('employee');
 
     Route::get('/department', DepartmentLivewire::class)->name('department');
+    Route::get('/department/{department_id}', DepartmentShowLivewire::class)->name('department.show');
 
     Route::get('/position', PositionLivewire::class)->name('position');
+    Route::get('/position/{position_id}', PositionShowLivewire::class)->name('position.show');
 
     Route::get('/attendance', AttendanceLivewire::class)->name('attendance');
+    Route::get('/attendance/{attendance_id}', AttendanceShowLivewire::class)->name('attendance.show');
 
     Route::get('/leave', LeaveLivewire::class)->name('leave');
+    Route::get('/leave/{leave_id}', LeaveShowLivewire::class)->name('leave.show');
 
     Route::get('/profile', ProfileLivewire::class)->name('profile');
 });
-
-Route::get('/logout', function () { 
-    return Auth::logout(); 
-})->name('logout');

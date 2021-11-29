@@ -29,6 +29,10 @@
                             {{ $position->salary }}
                         </td>
                         <td class="text-center text-nowrap py-1">
+                            <a href="{{ route('position.show', $position->id) }}" class="btn btn-primary text-white">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+
                             @can( 'update', $position )
                                 <button onclick="set_position({{ $position->id }})" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#position-modal">
                                     <i class="fas fa-edit"></i>

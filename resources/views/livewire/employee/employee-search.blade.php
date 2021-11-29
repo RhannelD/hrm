@@ -37,6 +37,10 @@
                             {{ isset($employee->employee_position)? $employee->employee_position->position->position: 'N/A' }}
                         </td>
                         <td class="text-center text-nowrap py-1">
+                            <button class="btn btn-primary text-white">
+                                <i class="fas fa-file-alt"></i>
+                            </button>
+
                             @if( Auth::user()->can('update', $employee) )
                                 <button onclick="set_user({{ $employee->id }})" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#user-modal">
                                     <i class="fas fa-edit"></i>

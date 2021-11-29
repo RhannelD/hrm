@@ -30,7 +30,7 @@ class PositionPolicy
      */
     public function view(User $user, Position $position)
     {
-        //
+        return true;
     }
 
     /**

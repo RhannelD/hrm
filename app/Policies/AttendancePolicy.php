@@ -30,7 +30,7 @@ class AttendancePolicy
      */
     public function view(User $user, Attendance $attendance)
     {
-        //
+        return true;
     }
 
     /**

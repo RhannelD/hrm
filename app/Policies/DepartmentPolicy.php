@@ -30,7 +30,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department)
     {
-        //
+        return true;
     }
 
     /**
