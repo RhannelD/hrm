@@ -19,7 +19,6 @@ class EmployeePositionPolicy
     public function viewAny(User $user)
     {
         return true;
-        // return $user->is_admin();
     }
 
     /**

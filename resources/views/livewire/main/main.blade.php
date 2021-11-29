@@ -58,7 +58,7 @@
                         </a>
 
 						<div class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-							<a class="dropdown-item" {{-- href=" route('my.account')  --}}}}">
+							<a class="dropdown-item" href="{{ route('profile') }}">
                                 <i class="fas fa-user-circle"></i>
                                 Profile
                             </a>

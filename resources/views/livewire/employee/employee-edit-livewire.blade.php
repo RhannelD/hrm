@@ -63,8 +63,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="c_course">Position</label>
-                                <select wire:model="employee.position_id" class="form-control" id="c_course">
+                                <label for="c_position">Position</label>
+                                <select wire:model="employee.position_id" class="form-control" id="c_position">
                                     <option>Select Position</option>
                                     @foreach ($positions as $position)
                                         <option value="{{ $position->id }}">{{ $position->position }}</option>

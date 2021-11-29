@@ -1,3 +1,4 @@
+<div class="h-100">
 <div class="p-0 p-sm-2 p-md-3 p-1 h-100 login-bg">
     <div class="card border-0 overflow-hidden h-100 rounded-lg login-panel shadow-lg rounded">
         <div class="row mx-0 h-100">
@@ -29,10 +30,20 @@
                                     </button>
                                 </div>
                             </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="#" type="button" data-toggle="modal" data-target="#forgot-password">
+                                    <h6>
+                                        Forgot password
+                                    </h6>
+                                </a>
+                            </div>
                         </form>
                     </div>
                 </div>  
             </div>
         </div>
     </div>
+</div>
+@livewire('auth.forgot-password-livewire', key('forgot-password'))
 </div>

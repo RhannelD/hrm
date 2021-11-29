@@ -84,3 +84,7 @@ html, body {
 .bg-mid-bar{
     background-color: #444444;
 }
+
+.mw800{
+    max-width: 800px;
+}

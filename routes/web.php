@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\SignInLivewire;
 use App\Http\Livewire\Leave\LeaveLivewire;
+use App\Http\Livewire\Profile\ProfileLivewire;
 use App\Http\Livewire\Employee\EmployeeLivewire;
 use App\Http\Livewire\Position\PositionLivewire;
 use App\Http\Livewire\Attendance\AttendanceLivewire;
@@ -38,6 +39,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/attendance', AttendanceLivewire::class)->name('attendance');
 
     Route::get('/leave', LeaveLivewire::class)->name('leave');
+
+    Route::get('/profile', ProfileLivewire::class)->name('profile');
 });
 
 Route::get('/logout', function () { 
