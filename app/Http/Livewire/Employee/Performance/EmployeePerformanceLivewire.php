@@ -8,6 +8,7 @@ use App\Models\Payroll;
 use Livewire\Component;
 use App\Models\Attendance;
 use App\Models\EmployeeAttendance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class EmployeePerformanceLivewire extends Component
@@ -139,9 +140,15 @@ class EmployeePerformanceLivewire extends Component
         return (object) $details;
     }
 
+    protected function cant_payroll()
+    {
+        $employee = $this->get_employee();
+        return $this->cant_payroll_by_date() || Auth::user()->cannot('create', [Payroll::class, $employee]) || $this->already_payrolled();
+    }
+
     public function payroll_confirm()
     {
-        if ( $this->cant_payroll_by_date() || $this->already_payrolled() ) 
+        if ( $this->cant_payroll() ) 
            return;
         
         $this->dispatchBrowserEvent('swal:confirm:payroll_confirm', [
@@ -153,7 +160,7 @@ class EmployeePerformanceLivewire extends Component
 
     public function payroll()
     {
-        if ( $this->cant_payroll_by_date() || $this->already_payrolled() ) 
+        if ( $this->cant_payroll() ) 
            return;
         
         $employee = $this->get_employee();

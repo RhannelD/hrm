@@ -51,6 +51,12 @@ class PayrollLivewire extends Component
             ->when(isset($employee_id), function ($query) use ($employee_id) {
                 $query->where('user_id', $employee_id);
             })
+            ->when(!Auth::user()->is_admin() && Auth::user()->can_payroll(), function ($query) {
+                $query->where('department_id', Auth::user()->employee_position->department_id);
+            })
+            ->when(!Auth::user()->is_admin() && !Auth::user()->can_payroll(), function ($query) {
+                $query->where('user_id', Auth::id());
+            })
             ->orderBy('payroll_at', 'desc')
             ->paginate($this->row_num);
     }

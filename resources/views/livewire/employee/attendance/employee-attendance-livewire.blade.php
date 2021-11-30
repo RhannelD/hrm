@@ -20,14 +20,16 @@
                     </span>
                 </div>
             </div>
-            <div class="d-flex ml-3">
-                <div class="input-group rounded">
-                    <button onclick="reset_create()" class="btn btn-secondary ml-auto mr-0 text-nowrap" type="button" data-toggle="modal" data-target="#employee-attendance-modal">
-                        <i class="fas fa-plus-circle"></i>
-                        Add New Attendance/Leave
-                    </button>
+            @can( 'create', [\App\Models\EmployeeAttendance::class, $employee] )
+                <div class="d-flex ml-3">
+                    <div class="input-group rounded">
+                        <button onclick="reset_create()" class="btn btn-secondary ml-auto mr-0 text-nowrap" type="button" data-toggle="modal" data-target="#employee-attendance-modal">
+                            <i class="fas fa-plus-circle"></i>
+                            Add New Attendance/Leave
+                        </button>
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
 	</nav>
     
@@ -37,9 +39,11 @@
 		</div>
 	</div>
 
-    <div wire:ignore>
-        @livewire('employee.attendance.employee-attendance-create-livewire', ['employee_id' => $employee_id]))
-    </div>
+    @can( 'create', [\App\Models\EmployeeAttendance::class, $employee] )
+        <div wire:ignore>
+            @livewire('employee.attendance.employee-attendance-create-livewire', ['employee_id' => $employee_id]))
+        </div>
+    @endcan
 
     <script>
 		window.addEventListener('employee-attendance-modal', event => {

@@ -40,13 +40,6 @@
                             <a href="{{ route('employee.attendance.show', $attendance->id) }}" class="btn btn-primary text-white">
                                 <i class="fas fa-file-alt"></i>
                             </a>
-
-                            {{-- @if( Auth::user()->can('update', $employee) )
-                                <button onclick="set_user({{ $employee->id }})" class="btn btn-secondary" type="button" data-toggle="modal" data-target="#user-modal">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                            @endif --}}
-                                
                             @can( 'delete', $attendance )
                                 <button wire:click='delete_confirm({{ $attendance->id }})' class="btn btn-danger"  id="delete-{{ $attendance->id }}"
                                     wire:loading.attr="disabled"

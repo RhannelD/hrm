@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->usertype == 'adm';
     }
 
+    public function can_payroll()
+    {
+        return EmployeePosition::where('user_id', $this->id)->where('position_id', 1)->exists();
+    }
+
     public function flname()
     {
         return "{$this->firstname} {$this->lastname}";

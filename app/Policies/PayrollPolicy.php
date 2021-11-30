@@ -39,9 +39,13 @@ class PayrollPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, User $employee)
     {
-        //
+        return $user->is_admin()
+            || (
+                $employee->employee_position->department_id == $user->employee_position->department_id
+                && $user->employee_position->position_id == 1
+            );
     }
 
     /**

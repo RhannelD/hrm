@@ -29,7 +29,12 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->is_admin();
+        return $user->is_admin()
+            || $user->id == $model->id
+            || (
+                $model->employee_position->department_id == $user->employee_position->department_id
+                && $user->employee_position->position_id == 1
+            );
     }
 
     /**

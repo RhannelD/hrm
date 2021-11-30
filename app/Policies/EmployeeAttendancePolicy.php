@@ -32,7 +32,12 @@ class EmployeeAttendancePolicy
      */
     public function view(User $user, EmployeeAttendance $employeeAttendance)
     {
-        return $user->is_admin();
+        return $user->is_admin()
+            || $user->id == $employeeAttendance->user_id
+            || (
+                $employee->employee_position->department_id == $user->employee_position->department_id
+                && $user->employee_position->position_id == 1
+            );
     }
 
     /**
@@ -41,9 +46,13 @@ class EmployeeAttendancePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, User $employee)
     {
-        //
+        return $user->is_admin()
+            || (
+                $employee->employee_position->department_id == $user->employee_position->department_id
+                && $user->employee_position->position_id == 1
+            );
     }
 
     /**
@@ -67,7 +76,11 @@ class EmployeeAttendancePolicy
      */
     public function delete(User $user, EmployeeAttendance $employeeAttendance)
     {
-        return $user->is_admin();
+        return $user->is_admin()
+            || (
+                $employeeAttendance->user->employee_position->department_id == $user->employee_position->department_id
+                && $user->employee_position->position_id == 1
+            );
     }
 
     /**

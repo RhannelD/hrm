@@ -52,6 +52,14 @@ class EmployeeLivewire extends Component
                 }
             ])
             ->whereSearch($this->search)
+            ->when(!Auth::user()->is_admin() && Auth::user()->can_payroll(), function ($query) {
+                $query->whereHas('employee_position', function ($query) {
+                    $query->where('department_id', Auth::user()->employee_position->department_id);
+                });
+            })
+            ->when(!Auth::user()->is_admin() && !Auth::user()->can_payroll(), function ($query) {
+                $query->where('id', Auth::id());
+            })
             ->paginate($this->row_num);
     }
     

@@ -31,17 +31,19 @@
                         </h5>
                     @else
                         <div class="d-flex">
-                            <button wire:click="payroll_confirm" class="btn btn-success text-nowrap"
-                                wire:loading.attr="disabled"
-                                wire:target="payroll_confirm, payroll"
-                                >
-                                <i class="fas fa-circle-notch fa-spin"
-                                    wire:loading
-                                    wire:target="payroll"
+                            @can( 'create', [\App\Models\Payroll::class, $employee] )
+                                <button wire:click="payroll_confirm" class="btn btn-success text-nowrap"
+                                    wire:loading.attr="disabled"
+                                    wire:target="payroll_confirm, payroll"
                                     >
-                                </i>
-                                Payroll
-                            </button>
+                                    <i class="fas fa-circle-notch fa-spin"
+                                        wire:loading
+                                        wire:target="payroll"
+                                        >
+                                    </i>
+                                    Payroll
+                                </button>
+                            @endcan
                             <div class="d-flex justify-content-end w-100">
                                 <h5 class="my-auto">
                                     {{ \Carbon\Carbon::parse($date)->format("F Y") }}
