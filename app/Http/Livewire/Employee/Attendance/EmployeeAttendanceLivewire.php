@@ -34,6 +34,14 @@ class EmployeeAttendanceLivewire extends Component
         $this->authorize('view', $employee);
     }
 
+    public function hydrate()
+    {
+        $employee = $this->get_employee();
+        if ( Auth::guest() || Auth::user()->cannot('view', $employee) ) {
+            return redirect()->route('employee.attendance', $this->employee_id);
+        }
+    }
+
     public function render()
     {
         return view('livewire.employee.attendance.employee-attendance-livewire', [

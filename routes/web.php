@@ -33,12 +33,12 @@ Route::get('/', function () { return redirect()->route('login.index'); })->name(
 
 
 // Needs to be signed out to access
-Route::group(['middleware' => ['guest']], function(){
+Route::group(['middleware' => ['user.login']], function(){
     Route::get('/login', SignInLivewire::class)->name('login.index');
 });
 
 // Needs to be signed in to access
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['user.auth']], function(){
     Route::prefix('/employee')->group(function () {
         Route::get('/', EmployeeLivewire::class)->name('employee');
 

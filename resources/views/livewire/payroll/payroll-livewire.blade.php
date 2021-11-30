@@ -16,7 +16,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-primary text-white border-0">Month</span>
                     </div>
-                    <input wire:model="date" class="form-control border-0 font-weight-bold" type="month" name="month" id="month" onchange="datepicked();">
+                    <input wire:model="date" class="form-control border-0 font-weight-bold" type="month" name="month" id="month">
                     <div class="input-group-append">
                         <button wire:click="$set('date', null)" class="btn btn-success" type="button">
                             View All

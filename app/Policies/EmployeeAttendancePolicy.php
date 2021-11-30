@@ -35,7 +35,7 @@ class EmployeeAttendancePolicy
         return $user->is_admin()
             || $user->id == $employeeAttendance->user_id
             || (
-                $employee->employee_position->department_id == $user->employee_position->department_id
+                $employeeAttendance->user->employee_position->department_id == $user->employee_position->department_id
                 && $user->employee_position->position_id == 1
             );
     }

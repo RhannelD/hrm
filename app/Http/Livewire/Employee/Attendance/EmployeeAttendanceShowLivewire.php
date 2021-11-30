@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Employee\Attendance;
 
 use Livewire\Component;
 use App\Models\EmployeeAttendance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class EmployeeAttendanceShowLivewire extends Component
@@ -19,6 +20,14 @@ class EmployeeAttendanceShowLivewire extends Component
 
         abort_if(is_null($employee_attendance), '404');
         $this->authorize('view', $employee_attendance);
+    }
+
+    public function hydrate()
+    {
+        $employee_attendance = $this->get_employee_attendance();
+        if ( Auth::guest() || Auth::user()->cannot('view', $employee_attendance) ) {
+            return redirect()->route('employee.attendance', $this->attendance_id);
+        }
     }
 
     public function render()

@@ -26,6 +26,14 @@ class EmployeePerformanceLivewire extends Component
         $this->employee_id = $employee_id;
     }
 
+    public function hydrate()
+    {
+        $employee = $this->get_employee();
+        if ( Auth::guest() || Auth::user()->cannot('view', $employee) ) {
+            return redirect()->route('employee.performance', $this->employee_id);
+        }
+    }
+
     public function render()
     {
         return view('livewire.employee.performance.employee-performance-livewire', [

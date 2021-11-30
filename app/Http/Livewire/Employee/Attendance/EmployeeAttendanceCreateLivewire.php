@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Attendance;
 use App\Rules\SameMonthYearRule;
 use App\Models\EmployeeAttendance;
+use Illuminate\Support\Facades\Auth;
 use App\Rules\NotYetPayrolledDateRule;
 use App\Rules\UniqueAttendanceDateRule;
 
@@ -46,6 +47,14 @@ class EmployeeAttendanceCreateLivewire extends Component
         $this->employee_id = $employee_id;
     }
 
+    public function hydrate()
+    {
+        $employee = $this->get_employee();
+        if ( Auth::guest() || Auth::user()->cannot('create', $employee) ) {
+            return $this->emitUp('refresh');
+        }
+    }
+
     public function reset_create()
     {
         $this->attendance = null;
@@ -58,7 +67,18 @@ class EmployeeAttendanceCreateLivewire extends Component
 
     public function updated($propertyName)
     {
+        if ( $propertyName=='end_date' && !isset($this->start_date) ) {
+            $this->start_date = $this->end_date;
+            $this->validateOnly('start_date');
+        }
         $this->validateOnly($propertyName);
+    }
+
+    public function updatedStartDate()
+    {
+        if ( !isset($this->end_date) ) {
+            $this->end_date = $this->start_date;
+        }
     }
 
     public function render()

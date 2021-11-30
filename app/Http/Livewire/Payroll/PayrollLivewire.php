@@ -26,6 +26,13 @@ class PayrollLivewire extends Component
         $this->employee_id = $employee_id;
     }
 
+    public function hydrate()
+    {
+        if ( Auth::guest() ) {
+            return redirect()->route('payroll');
+        }
+    }
+
     public function render()
     {
         return view('livewire.payroll.payroll-livewire', [
