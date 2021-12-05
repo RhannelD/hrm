@@ -11,7 +11,7 @@
                         <form class="col-12 mb-5" wire:submit.prevent="signin()">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" wire:model.lazy="email" placeholder="juan.delacruz@g.batstate-u.edu.ph" required autocomplete="email" autofocus>
+                                <input type="email" class="form-control" id="email" wire:model.lazy="email" placeholder="juan.delacruz@email.com" required autocomplete="email" autofocus>
                                 @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         

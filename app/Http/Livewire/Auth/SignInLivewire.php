@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\EnteredWrongPasswordNotification;
 
 class SignInLivewire extends Component
 {
@@ -43,10 +45,24 @@ class SignInLivewire extends Component
         }
         $this->password = '';
 
+        $this->notify_email_of_malicious_access();
+
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'error',  
             'message' => '', 
             'text' => 'Email and Password does not match'
         ]);
+    }
+
+    public function notify_email_of_malicious_access()
+    {
+        $user = User::where('email', $this->email)->first();
+
+        if ( $user ) {
+            try {
+                $user->notify(new EnteredWrongPasswordNotification());
+            } catch (\Exception $e) {
+            }
+        }
     }
 }
