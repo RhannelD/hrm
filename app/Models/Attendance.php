@@ -18,6 +18,7 @@ class Attendance extends Model
         'type',
         'attendance',
         'payment',
+        'description',
     ];
 
     public function employee_attendances()

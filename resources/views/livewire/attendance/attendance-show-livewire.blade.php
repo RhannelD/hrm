@@ -13,12 +13,16 @@
                 </thead>
                 <tbody class="h4">
                     <tr> 
-                        <td class="text-right col-5">Attendance:</td>
+                        <td class="text-right col-3">Attendance:</td>
                         <td>{{$attendance->attendance}}</td>
                     </tr>
                     <tr> 
                         <td class="text-right">Payment:</td>
                         <td>{{$attendance->payment}}%</td>
+                    </tr>
+                    <tr> 
+                        <td class="text-right">Description:</td>
+                        <td>{!! nl2br(e($attendance->description)) !!}</td>
                     </tr>
                 </tbody>
                 <tfoot>

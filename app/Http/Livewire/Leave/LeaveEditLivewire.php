@@ -16,7 +16,8 @@ class LeaveEditLivewire extends Component
     {
         return [
             "attendance.attendance" => "required|min:3|max:200|unique:attendances,attendance".((isset($this->attendance_id))?",".$this->attendance_id:''),
-            "attendance.payment" => "required|numeric|min:0|max:999"
+            "attendance.payment" => "required|numeric|min:0|max:999",
+            "attendance.description" => "max:65000",
         ];
     }
 
@@ -87,6 +88,7 @@ class LeaveEditLivewire extends Component
                 return;
             $attendance->attendance = $this->attendance->attendance;
             $attendance->payment    = $this->attendance->payment;
+            $attendance->description= $this->attendance->description;
         } elseif ( Auth::guest() || Auth::user()->cannot('create', [Attendance::class]) ) {
             return;
         }

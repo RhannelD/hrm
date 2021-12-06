@@ -29,7 +29,7 @@
 
     @can('create', \App\Models\Department::class)
         <div wire:ignore>
-            @livewire('department.department-edit-livewire'))
+            @livewire('department.department-edit-livewire')
         </div>
     @endcan
 

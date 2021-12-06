@@ -20,6 +20,11 @@
                         <input wire:model.lazy='department.department' type="text" class="form-control" id="department" placeholder="Department">
                         @error('department.department') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea wire:model.lazy='department.description' class="form-control" id="description" rows="3" placeholder="Description"></textarea>
+                        @error('department.description') <span class="text-danger">{{ $message }}</span> @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">

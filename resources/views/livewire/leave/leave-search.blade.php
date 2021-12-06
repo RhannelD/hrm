@@ -11,7 +11,6 @@
                 <tr>
                     <th>#</th>
                     <th>Leave</th>
-                    <th class="text-right">Payment</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -24,9 +23,6 @@
                         </th>
                         <td class="text-nowrap">
                             {{ $attendance->attendance }}
-                        </td>
-                        <td class="text-right">
-                            {{ $attendance->payment }}%
                         </td>
                         <td class="text-center text-nowrap py-1">
                             <a href="{{ route('leave.show', $attendance->id) }}" class="btn btn-primary text-white">

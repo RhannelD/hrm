@@ -18,6 +18,7 @@ class CreateAttendancesTable extends Migration
             $table->string('type', 20);
             $table->string('attendance');
             $table->double('payment');
+            $table->text('description');
             $table->timestamps();
         });
     }

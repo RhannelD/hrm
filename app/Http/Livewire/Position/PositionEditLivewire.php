@@ -17,6 +17,7 @@ class PositionEditLivewire extends Component
         return [
             "position.position" => "required|min:3|max:180|unique:positions,position".(isset($this->position_id)? ",{$this->position_id}": ""),
             "position.salary" => "required|numeric|min:1|max:10000000",
+            "position.description" => "max:65000",
         ];
     }
 
@@ -50,8 +51,7 @@ class PositionEditLivewire extends Component
             return;
 
         $this->position_id = $position_id;
-        $this->position->position = $position->position;
-        $this->position->salary   = $position->salary;
+        $this->position = $position->replicate();
         $this->resetErrorBag();
         $this->resetValidation();
     }
@@ -75,8 +75,9 @@ class PositionEditLivewire extends Component
             $position = Position::find($this->position_id);
             if ( Auth::guest() || Auth::user()->cannot('update', $position) ) 
                 return;
-            $position->position = $this->position->position;
-            $position->salary   = $this->position->salary;
+            $position->position    = $this->position->position;
+            $position->salary      = $this->position->salary;
+            $position->description = $this->position->description;
         } elseif ( Auth::guest() || Auth::user()->cannot('create', [Position::class]) ) {
             return;
         }

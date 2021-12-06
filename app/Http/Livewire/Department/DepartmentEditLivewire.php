@@ -16,6 +16,7 @@ class DepartmentEditLivewire extends Component
     {
         return [
             "department.department" => "required|min:3|max:180|unique:departments,department".(isset($this->department_id)? ",{$this->department_id}": ""),
+            "department.description" => "max:65000",
         ];
     }
 
@@ -49,7 +50,7 @@ class DepartmentEditLivewire extends Component
             return;
 
         $this->department_id = $department_id;
-        $this->department->department = $department->department;
+        $this->department = $department->replicate();
         $this->resetErrorBag();
         $this->resetValidation();
     }
@@ -74,6 +75,7 @@ class DepartmentEditLivewire extends Component
             if ( Auth::guest() || Auth::user()->cannot('update', $department) ) 
                 return;
             $department->department = $this->department->department;
+            $department->description = $this->department->description;
         } elseif ( Auth::guest() || Auth::user()->cannot('create', [Department::class]) ) {
             return;
         }

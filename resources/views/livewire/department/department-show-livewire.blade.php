@@ -16,6 +16,10 @@
                         <td class="text-right col-3">Department:</td>
                         <td>{{$department->department}}</td>
                     </tr>
+                    <tr> 
+                        <td class="text-right col-3">Description:</td>
+                        <td>{!! nl2br(e($department->description)) !!}</td>
+                    </tr>
                 </tbody>
                 <tfoot>
                     <tr>

@@ -13,12 +13,16 @@
                 </thead>
                 <tbody class="h4">
                     <tr> 
-                        <td class="text-right col-5">Position:</td>
+                        <td class="text-right col-3">Position:</td>
                         <td>{{$position->position}}</td>
                     </tr>
                     <tr> 
                         <td class="text-right">Salary Per Day:</td>
                         <td>{{$position->salary}}</td>
+                    </tr>
+                    <tr> 
+                        <td class="text-right">Description</td>
+                        <td>{!! nl2br(e($position->description)) !!}</td>
                     </tr>
                 </tbody>
                 <tfoot>

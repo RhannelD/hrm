@@ -11,7 +11,6 @@
                 <tr>
                     <th>#</th>
                     <th>Position</th>
-                    <th class="text-nowrap text-right">Salary/Day</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -24,9 +23,6 @@
                         </th>
                         <td class="text-nowrap">
                             {{ $position->position }}
-                        </td>
-                        <td class="text-nowrap text-right">
-                            {{ $position->salary }}
                         </td>
                         <td class="text-center text-nowrap py-1">
                             <a href="{{ route('position.show', $position->id) }}" class="btn btn-primary text-white">

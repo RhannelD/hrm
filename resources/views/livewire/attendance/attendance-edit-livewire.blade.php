@@ -33,6 +33,12 @@
                             </div>
                             @error('attendance.payment') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea wire:model.lazy='attendance.description' class="form-control" id="description" rows="3" placeholder="Description"></textarea>
+                            @error('attendance.description') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
